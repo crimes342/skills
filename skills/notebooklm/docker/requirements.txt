@@ -1,0 +1,5 @@
+cloakbrowser
+cloakbrowsermcp
+notebooklm-py[browser,cookies]
+httpx
+websockets

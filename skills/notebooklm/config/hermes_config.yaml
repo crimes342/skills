@@ -1,0 +1,15 @@
+# Hermes MCP 配置 — CloakBrowser + NotebookLM
+
+mcp_servers:
+  # CloakBrowser — Google 登录用
+  cloakbrowser:
+    command: cloakbrowsermcp
+    args: ["--caps", "all"]
+    timeout: 120
+    env:
+      CLOAK_HEADLESS: "true"
+      CLOAK_HUMANIZE: "true"
+      CLOAK_PROFILE_DIR: "/data/cloak_profiles/google"
+
+  # NotebookLM — 通过 skill 使用 CLI，不需要 MCP Server
+  # Skill 已安装: win4r/notebooklm-py/skills/notebooklm
