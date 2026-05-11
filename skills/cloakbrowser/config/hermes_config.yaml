@@ -1,0 +1,24 @@
+# Hermes MCP 配置模板 — CloakBrowser
+# 用法: 复制到 ~/.hermes/config.yaml
+
+mcp_servers:
+  cloakbrowser:
+    command: cloakbrowsermcp
+    args: ["--caps", "all"]
+    timeout: 120
+    env:
+      # === 基础配置 ===
+      CLOAK_HEADLESS: "true"           # true=纯无头, false=有头(需Xvfb)
+      CLOAK_HUMANIZE: "true"           # 人类行为模拟（必须开启）
+
+      # === 代理配置（可选）===
+      CLOAK_PROXY: ""                  # http://user:pass@host:port 或 socks5://host:port
+
+      # === 持久化 ===
+      CLOAK_PROFILE_DIR: "/data/cloak_profiles"  # 浏览器 profile 存储目录
+
+      # === 高级配置（可选）===
+      # CLOAK_FINGERPRINT_SEED: ""     # 指纹种子，留空自动生成
+      # CLOAK_TIMEZONE: "Asia/Shanghai" # 时区
+      # CLOAK_LOCALE: "zh-CN"          # 语言
+      # CLOAK_GEOIP: "true"            # 时区匹配代理 IP

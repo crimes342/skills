@@ -1,0 +1,30 @@
+services:
+  cloakbrowser-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:8900:8900"
+    environment:
+      - DISPLAY=:99
+      - CLOAK_HEADLESS=true
+      - CLOAK_HUMANIZE=true
+      - CLOAK_PROXY=
+      - CLOAK_GEOIP=true
+    volumes:
+      - cloak-profiles:/data/cloak_profiles
+      - cloak-cache:/root/.cloakbrowser
+    restart: unless-stopped
+    mem_limit: 1g
+    memswap_limit: 1g
+    healthcheck:
+      test: ["CMD", "python", "-c", "from cloakbrowser import launch; launch(headless=True).close()"]
+      interval: 60s
+      timeout: 30s
+      retries: 3
+
+volumes:
+  cloak-profiles:
+    driver: local
+  cloak-cache:
+    driver: local
